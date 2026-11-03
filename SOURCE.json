@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/marselnenaj/omarchy-yubikey",
+  "ref": "v0.1.0-preview.1",
+  "sourceDirectory": "plugins/yubikey.polkit",
+  "sha256": {
+    "manifest.json": "9b97f183144d2a70cfee34cbf49a5e2000c13e9fc8ec4271bab9a0e92521ac07",
+    "PolkitAgent.qml": "df2ee470484fc4e152962ad277a8972cf09eba6bd1a44d84acceea203d0df687",
+    "PolkitModel.js": "9f18bd9079bd92d2b431406dd0363027564395e259b2239ad6e39c8f7532c934"
+  }
+}
