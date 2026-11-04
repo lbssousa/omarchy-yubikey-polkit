@@ -18,8 +18,8 @@ function fingerprintConfiguredFromPamConfig(raw) {
 }
 
 function fido2ConfiguredFromPamConfig(raw) {
-  // A FIDO2 key (pam_u2f) in the auth stack: PAM waits for a touch before it
-  // ever asks for a password, so the dialog can show a key prompt meanwhile.
+  // Detect a configured key route before the PAM conversation starts.
+  // Subsequent prompts determine whether a PIN, touch or fallback is required.
   var lines = String(raw || "").split("\n")
   for (var i = 0; i < lines.length; i++) {
     var line = lines[i].replace(/^\s+|\s+$/g, "")
@@ -30,19 +30,21 @@ function fido2ConfiguredFromPamConfig(raw) {
   return false
 }
 
-function authorizationLabel(message) {
+function authorizationLabel(message, tr) {
   var text = String(message || "")
   var match = text.match(/^Authentication is (?:needed|required) to run [`']([^`']+)[`'] as /i)
-  return match ? "Authorize running '" + match[1] + "'" : text
+  return match ? (tr ? tr("Authorize running '%1'", [match[1]]) : "Authorize running '" + match[1] + "'") : text
 }
 
-function isFallbackPrompt(prompt) {
-  return String(prompt || "").trim() === "Use password fallback? Type password to continue:"
-}
-
-function responseLabel(prompt) {
+function isFallbackPrompt(prompt, translatedPrompts) {
   var text = String(prompt || "").trim()
-  return text || "Enter response"
+  var allowed = ["Use password fallback? Type password to continue:"].concat(translatedPrompts || [])
+  return allowed.some(function(value) { return text === String(value).trim() })
+}
+
+function responseLabel(prompt, tr) {
+  var text = String(prompt || "").trim()
+  return text || (tr ? tr("Enter response") : "Enter response")
 }
 
 if (typeof module !== "undefined") {

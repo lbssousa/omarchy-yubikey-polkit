@@ -15,4 +15,4 @@ reproduction with synthetic data. Never include enrolled credential mappings,
 encrypted password stores, real secrets or unredacted logs.
 
 For the current assumptions and limitations, read
-[the security model](https://github.com/marselnenaj/omarchy-yubikey/blob/v0.2.0/docs/security-model.md).
+[the security model](https://github.com/marselnenaj/omarchy-yubikey/blob/v0.3.0/docs/security-model.md).
