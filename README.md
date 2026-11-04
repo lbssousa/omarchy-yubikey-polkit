@@ -3,7 +3,7 @@
 A theme-aware Polkit agent that shows a touch prompt while PAM waits for a security key,
 with fingerprint and password prompts when those methods are requested.
 
-**Version 0.1.0.** This standalone plugin comes from
+**Version 0.2.0.** This standalone plugin comes from
 [Omarchy YubiKey](https://github.com/marselnenaj/omarchy-yubikey), which also provides guided key enrollment and PAM
 configuration. See the suite release notes for validation and compatibility.
 
@@ -17,7 +17,7 @@ code that runs inside the shell; review it before enabling it.
 The lock needs the shell's existing `omarchy-lock-password` PAM service. For key
 unlock it also needs `omarchy-lock-fido2` and a central enrollment mapping.
 Polkit needs the matching key authentication rule in `/etc/pam.d/polkit-1`.
-[Guided setup and recovery](https://github.com/marselnenaj/omarchy-yubikey/blob/v0.1.0/docs/install.md) configures those
+[Guided setup and recovery](https://github.com/marselnenaj/omarchy-yubikey/blob/v0.2.0/docs/install.md) configures those
 pieces with backups. Installing this plugin alone does not alter PAM or enroll
 a key, and it does not install the optional Keyring helper.
 
@@ -37,9 +37,10 @@ for `omarchy.polkit` first; keep a recovery terminal available. The host uses
 with a directory already copied by the suite installer under the same ID.
 Test key and password authentication before relying on it. Plugin commands
 follow the repository's default branch; use the suite release for a fixed source
-snapshot. [PAM instructions](https://github.com/marselnenaj/omarchy-yubikey/blob/v0.1.0/docs/pam-setup.md) and
-[security model](https://github.com/marselnenaj/omarchy-yubikey/blob/v0.1.0/docs/security-model.md) describe touch-only
-behavior, password fallback and limitations.
+snapshot. [PAM instructions](https://github.com/marselnenaj/omarchy-yubikey/blob/v0.2.0/docs/pam-setup.md) and
+[security model](https://github.com/marselnenaj/omarchy-yubikey/blob/v0.2.0/docs/security-model.md) describe PIN mode,
+explicit password fallback and limitations. Updating plugin files alone does not
+update PAM policy. Re-run reviewed suite setup to enable PIN/explicit fallback.
 
 ## Update and remove
 
@@ -64,7 +65,7 @@ if you also want to undo that setup.
 ## Source and license
 
 This is a distribution repository. Its maintained source is
-[`plugins/yubikey.polkit`](https://github.com/marselnenaj/omarchy-yubikey/tree/v0.1.0/plugins/yubikey.polkit) in the suite.
+[`plugins/yubikey.polkit`](https://github.com/marselnenaj/omarchy-yubikey/tree/v0.2.0/plugins/yubikey.polkit) in the suite.
 `SOURCE.json` records the source ref and hashes of the exported files. Report
 bugs and send changes to [the suite](https://github.com/marselnenaj/omarchy-yubikey/issues).
 
